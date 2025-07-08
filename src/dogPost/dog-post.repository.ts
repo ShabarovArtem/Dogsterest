@@ -21,12 +21,12 @@ export class DogPostRepository {
     const post = this.dogPosts.get(id);
     if (!post) return null;
     post.incrementLikes();
-    return post.likes;
+    return post.getLikes();
   }
 
   existsDogName(fileName: string): boolean {
     return Array.from(this.dogPosts.values()).some(
-      (post) => post.getFileName() === fileName,
+      (post) => post.fileName === fileName,
     );
   }
 }

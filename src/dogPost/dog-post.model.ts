@@ -14,24 +14,20 @@ export class DogPost {
     this.likes = 0;
   }
 
-  getFileName(): string {
-    return this.fileName;
-  }
-
-  getUrl(): string {
-    return this.url;
-  }
-
   incrementLikes(): void {
     this.likes++;
+  }
+
+  getLikes(): number {
+    return this.likes;
   }
 
   toDto(): dogPostDto {
     return {
       id: this.id,
-      fileName: this.getFileName(),
-      url: this.getUrl(),
-      likes: this.likes,
+      fileName: this.fileName,
+      url: this.url,
+      likes: this.getLikes(),
     };
   }
 }
