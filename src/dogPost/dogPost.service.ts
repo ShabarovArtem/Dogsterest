@@ -1,4 +1,10 @@
-import {HttpException, HttpStatus, Injectable, NotFoundException, OnModuleInit} from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+  OnModuleInit,
+} from '@nestjs/common';
 import axios from 'axios';
 import { dogPost } from './dogPost.model';
 import { DogPostRepository } from './dogPost.repository';
@@ -15,7 +21,10 @@ export class DogPostService implements OnModuleInit {
     const response = await axios.get<string[]>('https://random.dog/doggos');
 
     if (!response || !response.data) {
-      throw new HttpException('Failed to fetch dog posts', HttpStatus.BAD_GATEWAY);
+      throw new HttpException(
+        'Failed to fetch dog posts',
+        HttpStatus.BAD_GATEWAY,
+      );
     }
 
     const fileNames = response.data;

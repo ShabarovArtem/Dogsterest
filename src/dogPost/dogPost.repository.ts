@@ -3,30 +3,30 @@ import { dogPost } from './dogPost.model';
 
 @Injectable()
 export class DogPostRepository {
-    private dogPosts: Map<string, dogPost> = new Map();
+  private dogPosts: Map<string, dogPost> = new Map();
 
-    getAll(): dogPost[] {
-        return Array.from(this.dogPosts.values());
-    }
+  getAll(): dogPost[] {
+    return Array.from(this.dogPosts.values());
+  }
 
-    getById(id: string): dogPost | null {
-        return this.dogPosts.get(id) || null;
-    }
+  getById(id: string): dogPost | null {
+    return this.dogPosts.get(id) || null;
+  }
 
-    saveDogPost(post: dogPost): void {
-        this.dogPosts.set(post.id, post);
-    }
+  saveDogPost(post: dogPost): void {
+    this.dogPosts.set(post.id, post);
+  }
 
-    likeDogPost(id: string): number | null {
-        const post = this.dogPosts.get(id);
-        if (!post) return null;
-        post.incrementLikes();
-        return post.likes;
-    }
+  likeDogPost(id: string): number | null {
+    const post = this.dogPosts.get(id);
+    if (!post) return null;
+    post.incrementLikes();
+    return post.likes;
+  }
 
-    existsDogName(fileName: string): boolean {
-        return Array.from(this.dogPosts.values()).some(
-            (post) => post.getFileName() === fileName,
-        );
-    }
+  existsDogName(fileName: string): boolean {
+    return Array.from(this.dogPosts.values()).some(
+      (post) => post.getFileName() === fileName,
+    );
+  }
 }

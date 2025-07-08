@@ -1,6 +1,6 @@
 export interface dogPostDto {
-    id: string;
-    fileName: string;
-    url: string;
-    likes: number;
+  id: string;
+  fileName: string;
+  url: string;
+  likes: number;
 }

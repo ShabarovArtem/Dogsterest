@@ -8,14 +8,17 @@ export class DogPostController {
 
   @Get()
   async getPosts(
-      @Query('skip') skip = '0',
-      @Query('limit') limit = '10',
+    @Query('skip') skip = '0',
+    @Query('limit') limit = '10',
   ): Promise<dogPostDto[]> {
     const skipNum = parseInt(skip, 10);
     const limitNum = parseInt(limit, 10);
 
-    const posts = await this.dogPostService.getPostsPaginated(skipNum, limitNum);
-    return posts.map(post => post.toDto());
+    const posts = await this.dogPostService.getPostsPaginated(
+      skipNum,
+      limitNum,
+    );
+    return posts.map((post) => post.toDto());
   }
 
   @Get(':id')
