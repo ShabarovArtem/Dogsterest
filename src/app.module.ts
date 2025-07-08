@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { DogPostController } from './dogPost/dogPost.controller';
-import { DogPostService } from './dogPost/dogPost.service';
-import { DogPostRepository } from './dogPost/dogPost.repository';
+import { DogPostController } from './dogPost/dog-post.controller';
+import { DogPostService } from './dogPost/dog-post.service';
+import { DogPostRepository } from './dogPost/dog-post.repository';
 
 @Module({
   imports: [],

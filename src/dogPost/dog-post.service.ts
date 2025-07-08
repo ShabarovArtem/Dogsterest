@@ -6,8 +6,8 @@ import {
   OnModuleInit,
 } from '@nestjs/common';
 import axios from 'axios';
-import { dogPost } from './dogPost.model';
-import { DogPostRepository } from './dogPost.repository';
+import { DogPost } from './dog-post.model';
+import { DogPostRepository } from './dog-post.repository';
 
 @Injectable()
 export class DogPostService implements OnModuleInit {
@@ -32,12 +32,12 @@ export class DogPostService implements OnModuleInit {
     for (const dogName of fileNames) {
       if (this.repository.existsDogName(dogName)) continue;
 
-      const post = new dogPost(dogName);
+      const post = new DogPost(dogName);
       this.repository.saveDogPost(post);
     }
   }
 
-  async getPostsPaginated(skip: number, limit: number): Promise<dogPost[]> {
+  async getPostsPaginated(skip: number, limit: number): Promise<DogPost[]> {
     const allPosts = await this.repository.getAll();
 
     if (skip < 0) skip = 0;
@@ -51,7 +51,7 @@ export class DogPostService implements OnModuleInit {
     return allPosts.slice(skip, skip + limit);
   }
 
-  async getPostById(id: string): Promise<dogPost> {
+  async getPostById(id: string): Promise<DogPost> {
     const post = this.repository.getById(id);
     if (!post) {
       throw new NotFoundException(`Post is not found`);

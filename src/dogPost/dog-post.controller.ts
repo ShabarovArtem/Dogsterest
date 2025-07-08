@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Post, Query } from '@nestjs/common';
-import { DogPostService } from './dogPost.service';
-import { dogPostDto } from './dogPost.dto';
+import { DogPostService } from './dog-post.service';
+import { dogPostDto } from './dog-post.dto';
 
 @Controller('dogPost')
 export class DogPostController {

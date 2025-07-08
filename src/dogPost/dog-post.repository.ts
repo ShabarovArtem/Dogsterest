@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { dogPost } from './dogPost.model';
+import { DogPost } from './dog-post.model';
 
 @Injectable()
 export class DogPostRepository {
-  private dogPosts: Map<string, dogPost> = new Map();
+  private dogPosts: Map<string, DogPost> = new Map();
 
-  getAll(): dogPost[] {
+  getAll(): DogPost[] {
     return Array.from(this.dogPosts.values());
   }
 
-  getById(id: string): dogPost | null {
+  getById(id: string): DogPost | null {
     return this.dogPosts.get(id) || null;
   }
 
-  saveDogPost(post: dogPost): void {
+  saveDogPost(post: DogPost): void {
     this.dogPosts.set(post.id, post);
   }
 

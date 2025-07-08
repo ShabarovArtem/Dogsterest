@@ -1,11 +1,11 @@
 import { randomUUID } from 'crypto';
-import { dogPostDto } from './dogPost.dto';
+import { dogPostDto } from './dog-post.dto';
 
-export class dogPost {
+export class DogPost {
   readonly id: string;
-  private fileName: string;
-  private url: string;
-  likes: number;
+  readonly fileName: string;
+  readonly url: string;
+  private likes: number;
 
   constructor(name: string) {
     this.id = randomUUID();
