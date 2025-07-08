@@ -19,19 +19,14 @@ export class DogPostController {
   }
 
   @Get(':id')
-  async getById(@Param('id') id: string): Promise<dogPostDto | null> {
+  async getById(@Param('id') id: string): Promise<dogPostDto> {
     const post = await this.dogPostService.getPostById(id);
-    return post ? post.toDto() : null;
+    return post.toDto();
   }
 
   @Post(':id/like')
-  async like(@Param('id') id: string): Promise<{ success: boolean; likes?: number }> {
+  async like(@Param('id') id: string): Promise<{ likes: number }> {
     const likes = await this.dogPostService.likePost(id);
-
-    if (likes === null) {
-      return { success: false };
-    }
-
-    return { success: true, likes };
+    return { likes };
   }
 }

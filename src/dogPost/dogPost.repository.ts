@@ -17,11 +17,11 @@ export class DogPostRepository {
         this.dogPosts.set(post.id, post);
     }
 
-    likeDogPost(id: string): boolean {
+    likeDogPost(id: string): number | null {
         const post = this.dogPosts.get(id);
-        if (!post) return false;
+        if (!post) return null;
         post.incrementLikes();
-        return true;
+        return post.likes;
     }
 
     existsDogName(fileName: string): boolean {
