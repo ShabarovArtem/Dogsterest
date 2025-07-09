@@ -14,12 +14,18 @@ export class DogPost {
     this.likes = 0;
   }
 
+  getLikes(): number {
+    return this.likes;
+  }
+
   incrementLikes(): void {
     this.likes++;
   }
 
-  getLikes(): number {
-    return this.likes;
+  decrementLikes(): void {
+    if (this.likes > 0) {
+      this.likes--;
+    }
   }
 
   toDto(): dogPostDto {

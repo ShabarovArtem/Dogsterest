@@ -32,4 +32,10 @@ export class DogPostController {
     const likes = await this.dogPostService.likePost(id);
     return { likes };
   }
+
+  @Post(':id/unlike')
+  async unlike(@Param('id') id: string): Promise<{ likes: number }> {
+    const likes = await this.dogPostService.unlikePost(id);
+    return { likes };
+  }
 }

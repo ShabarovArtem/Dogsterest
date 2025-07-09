@@ -37,6 +37,14 @@ export class DogPostService implements OnModuleInit {
     }
   }
 
+  private findPostOrThrow(id: string): DogPost {
+    const post = this.repository.getById(id);
+    if (!post) {
+      throw new NotFoundException('Post is not found');
+    }
+    return post;
+  }
+
   async getPostsPaginated(skip: number, limit: number): Promise<DogPost[]> {
     const allPosts = await this.repository.getAll();
 
@@ -52,18 +60,18 @@ export class DogPostService implements OnModuleInit {
   }
 
   async getPostById(id: string): Promise<DogPost> {
-    const post = this.repository.getById(id);
-    if (!post) {
-      throw new NotFoundException(`Post is not found`);
-    }
-    return post;
+    return this.findPostOrThrow(id);
   }
 
   async likePost(id: string): Promise<number> {
-    const likes = this.repository.likeDogPost(id);
-    if (likes === null) {
-      throw new NotFoundException(`Post is not found`);
-    }
-    return likes;
+    const post = this.findPostOrThrow(id);
+    post.incrementLikes();
+    return post.getLikes();
+  }
+
+  async unlikePost(id: string): Promise<number> {
+    const post = this.findPostOrThrow(id);
+    post.decrementLikes();
+    return post.getLikes();
   }
 }

@@ -17,13 +17,6 @@ export class DogPostRepository {
     this.dogPosts.set(post.id, post);
   }
 
-  likeDogPost(id: string): number | null {
-    const post = this.dogPosts.get(id);
-    if (!post) return null;
-    post.incrementLikes();
-    return post.getLikes();
-  }
-
   existsDogName(fileName: string): boolean {
     return Array.from(this.dogPosts.values()).some(
       (post) => post.fileName === fileName,
