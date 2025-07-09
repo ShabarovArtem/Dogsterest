@@ -45,8 +45,8 @@ export class DogPostService implements OnModuleInit {
     return post;
   }
 
-  async getPostsPaginated(skip: number, limit: number): Promise<DogPost[]> {
-    const allPosts = await this.repository.getAll();
+  getPostsPaginated(skip: number, limit: number): DogPost[] {
+    const allPosts = this.repository.getAll();
 
     if (skip < 0) skip = 0;
     if (limit < 1) limit = 1;
@@ -59,17 +59,17 @@ export class DogPostService implements OnModuleInit {
     return allPosts.slice(skip, skip + limit);
   }
 
-  async getPostById(id: string): Promise<DogPost> {
+  getPostById(id: string): DogPost {
     return this.findPostOrThrow(id);
   }
 
-  async likePost(id: string): Promise<number> {
+  likePost(id: string): number {
     const post = this.findPostOrThrow(id);
     post.incrementLikes();
     return post.getLikes();
   }
 
-  async unlikePost(id: string): Promise<number> {
+  unlikePost(id: string): number {
     const post = this.findPostOrThrow(id);
     post.decrementLikes();
     return post.getLikes();
